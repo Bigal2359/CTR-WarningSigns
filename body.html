@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2022 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+
+<div class="warning-box">
+  <span>Tap to take action</span>
+</div>
+
+<div id="overlay"><div id="savePrompt">Tap + Hold to Add to Photos</div></div>
+
+<div id="find-sign"></div>
+
+<a-scene
+  antialias="true"
+  xrextras-generate-image-targets="primitive: warningsigns-frame"
+  landing-page
+  xrextras-loading
+  xrextras-runtime-error
+  renderer="colorManagement: true"
+  xrweb="disableWorldTracking: true">
+  <a-assets>
+    <a-image id="warning-sign" src="assets/school-warning-sign.png"></a-image>
+  </a-assets>
+
+  <!-- add capture button -->
+  <xrextras-capture-button capture-mode="photo"></xrextras-capture-button>
+
+  <!-- configure capture settings -->
+  <xrextras-capture-config
+    file-name-prefix="warning-signs-"
+    watermark-image-url="./assets/changetheref.png"
+    watermark-max-width="20"
+    watermark-max-height="15"
+    request-mic="manual"></xrextras-capture-config>
+
+  <!-- add capture preview -->
+  <xrextras-capture-preview></xrextras-capture-preview>
+
+  <a-camera
+    id="camera"
+    position="0 4 10"
+    raycaster="objects: .cantap"
+    cursor="fuse:false; rayOrigin:mouse;">
+  </a-camera>
+  <a-light type="ambient" intensity="1.3"></a-light>
+  <a-light type="directional" intensity="3" position="1.5 2.5 0.6"></a-light>
+</a-scene>
